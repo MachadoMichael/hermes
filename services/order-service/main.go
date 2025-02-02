@@ -10,12 +10,11 @@ import (
 )
 
 func main() {
-	config := infra.MSConfig{URL: "amqp://guess:guess@localhost:5672/"}
+	config := infra.MSConfig{URL: "amqp://guest:guest@rabbitmq:5672/"}
 	client, err := infra.NewMSClient(config)
 	if err != nil {
-		log.Fatalf("Failed to create messaging system client: %v", err)
+		log.Fatalf("Failed to connect to messaging system: %v", err)
 	}
-
 	defer client.Close()
 
 	http.HandleFunc("/order", func(w http.ResponseWriter, r *http.Request) {
@@ -24,6 +23,8 @@ func main() {
 			http.Error(w, "Invalid request body", http.StatusBadRequest)
 			return
 		}
+
+		log.Printf("Received order: %s", order.ID)
 
 		body, err := json.Marshal(order)
 		if err != nil {
@@ -35,10 +36,11 @@ func main() {
 			http.Error(w, "Failed to publish order", http.StatusInternalServerError)
 			return
 		}
+
 		w.WriteHeader(http.StatusCreated)
-		w.Write([]byte("Order created and published successfully"))
+		log.Fatal(w.Write([]byte("Order created and published")))
 	})
 
-	log.Println("Order service started on port 8080")
+	log.Println("Order service started on :8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

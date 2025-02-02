@@ -1,4 +1,4 @@
-module hermes/payment-service
+module hermes/order-service
 
 go 1.23.4
 

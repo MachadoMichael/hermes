@@ -1,0 +1,4 @@
+github.com/MachadoMichael/hermes v0.0.0-20250202161804-a663001152a4 h1:mERcdSzLfr9k+kyQx6GkO9cbUIYm4ZK4+r/QAEDKWEA=
+github.com/MachadoMichael/hermes v0.0.0-20250202161804-a663001152a4/go.mod h1:qt0vOfIP5vIkG/pWWrtWGiBXMLEYDZHR3ASQ/7fnnqA=
+github.com/streadway/amqp v1.1.0 h1:py12iX8XSyI7aN/3dUT8DFIDJazNJsVJdxNVEpnQTZM=
+github.com/streadway/amqp v1.1.0/go.mod h1:WYSrTEYHOXHd0nwFeUXAe2G2hRnQT+deZJJf88uS9Bg=

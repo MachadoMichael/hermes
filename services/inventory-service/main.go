@@ -14,7 +14,7 @@ type InventoryUpdate struct {
 }
 
 func main() {
-	config := infra.MSConfig{URL: "amqp://guess:guess@localhost:5672/"}
+	config := infra.MSConfig{URL: "amqp://guest:guest@rabbitmq:5672/"}
 	client, err := infra.NewMSClient(config)
 	if err != nil {
 		log.Fatalf("Failed to create messaging system client: %v", err)
