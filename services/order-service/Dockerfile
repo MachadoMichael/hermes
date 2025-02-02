@@ -15,7 +15,7 @@ RUN go mod tidy
 COPY . .
 
 # Build the application
-RUN go build -o order-service ./main.go
+RUN go build -o order-service .
 
 # Run the application
 CMD ["./order-service"]

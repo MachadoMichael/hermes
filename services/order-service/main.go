@@ -38,9 +38,12 @@ func main() {
 		}
 
 		w.WriteHeader(http.StatusCreated)
-		log.Fatal(w.Write([]byte("Order created and published")))
+		// Remove log.Fatal here - just handle the error normally
+		if _, err := w.Write([]byte("Order created and published")); err != nil {
+			log.Printf("Error writing response: %v", err)
+		}
 	})
 
 	log.Println("Order service started on :8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil)) // This is the only place where log.Fatal should be used
 }

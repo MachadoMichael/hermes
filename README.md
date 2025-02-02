@@ -7,7 +7,7 @@
     Hermes is a project for learning about messaging systems and distributed systems.
 
 
-### Impressions:
+### Steps:
     1. Starting build a messaging system connection.
     2. Abstract the MS, because you can change this in the future.
     3. Define a domain to put models shared between services.
@@ -16,4 +16,4 @@
     6. Define a Makefile for build and run services.
     7. Each service should have your own API.
 
-# hermes
+

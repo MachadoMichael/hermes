@@ -9,7 +9,7 @@ COPY go.mod .
 COPY go.sum .
 
 # Download dependencies
-RUN go mod download
+RUN go mod tidy 
 
 # Copy the source code
 COPY . .
