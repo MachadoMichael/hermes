@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"  # AMQP port for messaging
+      - "15672:15672"  # RabbitMQ Management UI port
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - rabbitmq_network
+
+  order-service:
+    build: ./services/order-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - rabbitmq
+    networks:
+      - rabbitmq_network
+
+  payment-service:
+    build: ./services/payment-service
+    depends_on:
+      - rabbitmq
+    networks:
+      - rabbitmq_network
+
+  inventory-service:
+    build: ./services/inventory-service
+    depends_on:
+      - rabbitmq
+    networks:
+      - rabbitmq_network
+
+volumes:
+  rabbitmq_data:
+    driver: local
+
+networks:
+  rabbitmq_network:
+    driver: bridge
